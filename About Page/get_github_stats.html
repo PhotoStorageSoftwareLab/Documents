@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Github API Example</title>
+	</head>
+	<script>
+	function successCallBackCommits(result){
+		document.getElementById("commits").innerHTML = "Total Commits: " + result.total_count
+		var github_ids = {
+			"adripedroza": 0,
+			"abhimand": 0,
+			"shash-pandey27": 0,
+			"mmachado33": 0,
+			"pranav12321": 0,
+			"umer936": 0,
+			"bpham1": 0
+		};
+		
+		result.items.forEach(commit_func)
+		
+		function commit_func(item) {
+			github_ids[item.author["login"]] += 1
+		}
+		
+		for (var key in github_ids) {
+			document.getElementById("commits_" + key).innerHTML = "Total Commits: " + github_ids[key]
+		}
+	}
+	function successCallBackIssues(result){
+		document.getElementById("issues").innerHTML = "Total Issues: " + result.total_count
+		var github_ids = {
+			"adripedroza": 0,
+			"abhimand": 0,
+			"shash-pandey27": 0,
+			"mmachado33": 0,
+			"pranav12321": 0,
+			"umer936": 0,
+			"bpham1": 0
+		};
+		
+		result.items.forEach(issue_func)
+		
+		function issue_func(item) {
+			github_ids[item.user["login"]] += 1
+		}
+		
+		for (var key in github_ids) {
+			document.getElementById("issues_" + key).innerHTML = "Total Issues: " + github_ids[key]
+		}
+	}
+	async function getIssues() {
+		const url = "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp"
+		const headers = {
+			"Accept" : "application/vnd.github.machine-man-preview"
+		}
+		const response = await fetch(url, {
+			"method" : "GET",
+			"headers" : headers
+		})
+		const result = response.json()
+		
+		console.log(result)
+		result.then(successCallBackIssues)
+	}
+	async function getCommits() {
+		const url = "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp author-date:2019-09-01..2020-12-30"
+		const headers = {
+			"Accept" : "application/vnd.github.cloak-preview"
+		}
+		const response = await fetch(url, {
+			"method" : "GET",
+			"headers" : headers
+		})
+		const result = response.json()
+		
+		console.log(result)
+		result.then(successCallBackCommits)
+	}
+	</script>
+	
+	<body>
+		<h1>Description</h1>
+		
+		<h1>Group: Crimson</h1>
+		
+		<h1>Group Members</h1>
+		<h2>Adriana Pedroza</h2>
+		<p id="commits_adripedroza"></p>
+		<p id="issues_adripedroza"></p>
+		<p>Total unit tests: </p>
+		<h2>Abhishek Mandal</h2>
+		<p id="commits_abhimand"></p>
+		<p id="issues_abhimand"></p>
+		<p>Total unit tests: </p>
+		<h2>Shashwat Pandey</h2>
+		<p id="commits_shash-pandey27"></p>
+		<p id="issues_shash-pandey27"></p>
+		<p>Total unit tests: </p>
+		<h2>Matthew Machado</h2>
+		<p id="commits_mmachado33"></p>
+		<p id="issues_mmachado33"></p>
+		<p>Total unit tests: </p>
+		<h2>Pranav Rama</h2>
+		<p id="commits_pranav12321"></p>
+		<p id="issues_pranav12321"></p>
+		<p>Total unit tests: </p>
+		<h2>Umer Salman</h2>
+		<p id="commits_umer936"></p>
+		<p id="issues_umer936"></p>
+		<p>Total unit tests: </p>
+		<h2>Brandon Pham</h2>
+		<img src="bpham.jpg">
+		<h3>Bio</h3>
+		<p>I am a senior student studying Software Engineering and Network Security. I am specialized in Software Development, versed in Python, Java, and C#.</p>
+		<h3>Major</h3>
+		<p>Electrical and Computer Engineering</p>
+		<h3>Responsibilities</h3>
+		<p>Data Scraping</p>
+		<p id="commits_bpham1"></p>
+		<p id="issues_bpham1"></p>
+		<p>Total unit tests: 0</p>
+		
+		<h1>The Github Repository</h1>
+		<a href="https://github.com/PhotoStorageSoftwareLab/NextcloudWebApp">Repo</a>
+		<p id="commits">Total Commits: </p>
+		<p id="issues">Total Issues: </p>
+		
+		<script>
+		getCommits()
+		getIssues()
+		</script>
+		
+		<h1>Data</h1>
+		<a href='https://www.alltopsights.com/'>All Top Sights</a>
+		<p>This site has a list of popular locations and their Latitude and Longitude filtered by city.</p> 
+		<p>The HTML tables on this site can be easily extracted (they are simple HTML tables).</p>
+		<p>However, to get all locations, we need to programmatically shift through multiple pages</p>
+		<p>since each page is limited to a single city. We can use a list of cities from the next sources to achieve this.</p>
+		<p>This can be done using Python and Scrapy.</p>
+		
+		<a href="http://www.geonames.org/search.html?q=&country=US">Geonames</a>
+		<p>This site has a list of cities and their Latitude and Longitude filtered by country.</p> 
+		<p>The HTML tables on this site can be easily extracted (they are simple HTML tables).</p>
+		<p>However, to get all cities, we need to programmatically shift through multiple pages</p>
+		<p>since each page is limited to 50 cities. This can be done using Python and Scrapy.</p>
+		
+		<a href="https://developers.google.com/public-data/docs/canonical/countries_csv">Countries CSV</a>
+		<p>This site has a list of countries and their Latitude and Longitude.</p> 
+		<p>The HTML tables on this site can be easily extracted (they are simple HTML tables).</p>
+		<p>Since all information is on a single page, Excel can be used scrape all the data easily to a csv.</p>
+		<p>Data > Get Data > From Other Sources > From Web</p>
+		
+		<h1>Tools</h1>
+	</body>
+</html>
