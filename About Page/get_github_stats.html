@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Github API Example</title>
+		<title>About Page</title>
+		<style>
+		p{
+			 width: 750px;
+		}
+		</style>
 	</head>
 	<script>
 	function successCallBackCommits(result){
@@ -152,7 +157,11 @@
 		<h2>Brandon Pham</h2>
 		<img src="bpham.jpg">
 		<h3>Bio</h3>
-		<p>I am a senior student studying Software Engineering and Network Security. I am specialized in Software Development, versed in Python, Java, and C#.</p>
+		<p style="width:750px">
+		I am a senior student studying Software Engineering and Network Security. 
+		I am specialized in Software Development, versed in Python, Java, and C#.
+		I interned at AMD last Summer and Spring. I strive for a job in Network or Cyber security.
+		</p>
 		<h3>Major</h3>
 		<p>Electrical and Computer Engineering</p>
 		<h3>Responsibilities</h3>
@@ -174,24 +183,30 @@
 		
 		<h1>Data</h1>
 		<a href='https://www.alltopsights.com/'>All Top Sights</a>
-		<p>This site has a list of popular locations and their Latitude and Longitude filtered by city.</p> 
-		<p>The HTML tables on this site can be easily extracted (they are simple HTML tables).</p>
-		<p>However, to get all locations, we need to programmatically shift through multiple pages</p>
-		<p>since each page is limited to a single city. We can use a list of cities from the next sources to achieve this.</p>
-		<p>This can be done using Python and Scrapy.</p>
+		<p style="width:750px">This site has a list of popular locations and their Latitude and Longitude filtered by city.
+		The HTML tables on this site can be easily extracted (they are simple HTML tables).
+		However, to get all locations, we need to programmatically shift through multiple pages
+		since each page is limited to a single city. We can use a list of cities from the next sources to achieve this.
+		This can be done using Python and Scrapy.</p>
 		
 		<a href="http://www.geonames.org/search.html?q=&country=US">Geonames</a>
-		<p>This site has a list of cities and their Latitude and Longitude filtered by country.</p> 
-		<p>The HTML tables on this site can be easily extracted (they are simple HTML tables).</p>
-		<p>However, to get all cities, we need to programmatically shift through multiple pages</p>
-		<p>since each page is limited to 50 cities. This can be done using Python and Scrapy.</p>
+		<p style="width:750px">This site has a list of cities and their Latitude and Longitude filtered by country.
+		The HTML tables on this site can be easily extracted (they are simple HTML tables).
+		However, to get all cities, we need to programmatically shift through multiple pages
+		since each page is limited to 50 cities. This can be done using Python and Scrapy.</p>
 		
 		<a href="https://developers.google.com/public-data/docs/canonical/countries_csv">Countries CSV</a>
-		<p>This site has a list of countries and their Latitude and Longitude.</p> 
-		<p>The HTML tables on this site can be easily extracted (they are simple HTML tables).</p>
-		<p>Since all information is on a single page, Excel can be used scrape all the data easily to a csv.</p>
-		<p>Data > Get Data > From Other Sources > From Web</p>
+		<p style="width:750px">This site has a list of countries and their Latitude and Longitude.
+		The HTML tables on this site can be easily extracted (they are simple HTML tables).
+		Since all information is on a single page, Excel can be used scrape all the data easily to a csv.
+		Data > Get Data > From Other Sources > From Web</p>
 		
 		<h1>Tools</h1>
+		<p>The primary tool used in this project is Nextcloud. Nextcloud will provide local storage to store photos on a machine in the user’s local network. These photos will be uploaded through a dedicated web application. This web application will be created with a combination of Javascript and React, built for a Node environment. Image processing will be handled through YOLO, a C++ image recognition system. YOLO comes with a neural network named darknet developed by the same person. Additionally, YOLO has default weights with classifications for over 9000 objects. The YOLO associated set of tools handles this part for us so we do not need to reinvent the wheel. Nextcloud’s web application toolkit also includes PHP (with PHPUnit for unit testing) and MySQL for the backend.
+		Because most of the front-end programming is built for the front-end, we intend to use web development tools that are included in the browser of choice. We may also utilize Selenium for comprehensive design tests.
+		We also are using tools for us to manage a project of this scope. We will be keeping our code on GitHub in a group so that we can have multiple repositories for different aspects of the project. Additionally, all non-code files, such as this report, are kept on a team Google Drive (semi-ironic). Lastly, we have created a Slack group with dedicated channels for things like the application development vs general communication. 
+		For Data Scraping, we created a scraping script in Python using a data scraping module called Scrapy.
+		</p>
+
 	</body>
 </html>
