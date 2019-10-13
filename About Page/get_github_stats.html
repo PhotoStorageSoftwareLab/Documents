@@ -2,11 +2,7 @@
 <html>
 	<head>
 		<title>About Page</title>
-		<style>
-		p{
-			 width: 750px;
-		}
-		</style>
+		<link rel="stylesheet" type="text/css" href="main.css">
 	</head>
 	<script>
 	function successCallBackCommits(result){
@@ -20,13 +16,13 @@
 			"umer936": 0,
 			"bpham1": 0
 		};
-		
+
 		result.items.forEach(commit_func)
-		
+
 		function commit_func(item) {
 			github_ids[item.author["login"]] += 1
 		}
-		
+
 		for (var key in github_ids) {
 			document.getElementById("commits_" + key).innerHTML = "Total Commits: " + github_ids[key]
 		}
@@ -42,13 +38,13 @@
 			"umer936": 0,
 			"bpham1": 0
 		};
-		
+
 		result.items.forEach(issue_func)
-		
+
 		function issue_func(item) {
 			github_ids[item.user["login"]] += 1
 		}
-		
+
 		for (var key in github_ids) {
 			document.getElementById("issues_" + key).innerHTML = "Total Issues: " + github_ids[key]
 		}
@@ -63,7 +59,7 @@
 			"headers" : headers
 		})
 		const result = response.json()
-		
+
 		console.log(result)
 		result.then(successCallBackIssues)
 	}
@@ -77,23 +73,23 @@
 			"headers" : headers
 		})
 		const result = response.json()
-		
+
 		console.log(result)
 		result.then(successCallBackCommits)
 	}
 	</script>
-	
+
 	<body>
 		<h1>Description</h1>
-		
+
 		<h1>Group: Crimson</h1>
-		
+
 		<h1>Group Members</h1>
-		
+
 		<h2>Adriana Pedroza</h2>
 		<img src="apedroza.jpg">
 		<h3>Bio</h3>
-		<p>I am a senior student at UT Austin, specializing in Software Engineering and Data Science. 
+		<p>I am a senior student at UT Austin, specializing in Software Engineering and Data Science.
 			I have industry experience with robotic process automation, natural language processing, and serverless solutions including AWS.<br>
 			My most familiar languages are Java and Javascript, though I have experience with Python, C/C++/C#, and specialized languages like SQL. I collect stickers and playing cards, and have a twin sister studying MechE at A&M!</p>
 		<h3>Major</h3>
@@ -104,16 +100,20 @@
 		<p id="commits_adripedroza"></p>
 		<p id="issues_adripedroza"></p>
 		<p>Total unit tests: </p>
-		
+
 		<h2>Abhishek Mandal</h2>
+		<!-- He's out of town. Umer edited from his LinkedIn -->
 		<h3>Bio</h3>
+		I am an undergraduate senior at the University of Texas at Austin. My interests are in Software Engineering and Product Management, with fortes in Java, JavaScript, and C/C++. I have been a researcher at A&M International University and UT, and have interned at Fujitsu.
 		<h3>Major</h3>
+		Electrical and Computer Engineering
 		<h3>Responsibilities</h3>
+		Organization, Documentation, and assisting wherever it is needed.
 		<h3>Github Stats</h3>
 		<p id="commits_abhimand"></p>
 		<p id="issues_abhimand"></p>
 		<p>Total unit tests: </p>
-		
+
 		<h2>Shashwat Pandey</h2>
 		<h3>Bio</h3>
 		<h3>Major</h3>
@@ -122,11 +122,11 @@
 		<p id="commits_shash-pandey27"></p>
 		<p id="issues_shash-pandey27"></p>
 		<p>Total unit tests: </p>
-		
+
 		<h2>Matthew Machado</h2>
 		<h3>Bio</h3>
-		<p>I am a senior doing a dual degree, studying Software Engineering and Japanese. 
-			I interned at USAA last Summer and focused on testing in Java/Kotlin. 
+		<p>I am a senior doing a dual degree, studying Software Engineering and Japanese.
+			I interned at USAA last Summer and focused on testing in Java/Kotlin.
 			I'm most familiar with Java/Kotlin, but have experience in Python and C/C++ as well. </p>
 		<h3>Major</h3>
 		<p> Electrical and Computer Engineering and Asian Cultures and Languages - Japanese </p>
@@ -136,7 +136,7 @@
 		<p id="commits_mmachado33"></p>
 		<p id="issues_mmachado33"></p>
 		<p>Total unit tests: </p>
-		
+
 		<h2>Pranav Rama</h2>
 		<img src="Pranav.png">
 		<h3>Bio</h3>
@@ -150,21 +150,25 @@
 		<p id="commits_pranav12321"></p>
 		<p id="issues_pranav12321"></p>
 		<p>Total unit tests: </p>
-		
+
 		<h2>Umer Salman</h2>
+		<img src="umer936.jpg">
 		<h3>Bio</h3>
+		<p>Hi, I'm <a href="https://umer936.com">Umer</a>! I'm a senior undergrad who primarily works in the robotics and cybersecurity fields. For robotics, I run <a href="https://texasaerialrobotics.com">Texas Aerial Robotics</a>, a 40 person research team focused on the cutting edge of autonomous aerial vehicles. I also love cybersecurity, having interned at General Dynamics Mission Systems; Visa, Inc.; and National Geospacial-Intelligence Agency. I always love meeting new people, so feel free to reach out at <a href="mailto:umer936@gmail.com">umer936@gmail.com</a>.</p>
 		<h3>Major</h3>
+		<p>Electrical and Computer Engineering<br>Minor: Business</p>
 		<h3>Responsibilities</h3>
+		<p>Project Lead. Nextcloud and YOLO stuff.</p>
 		<h3>Github Stats</h3>
 		<p id="commits_umer936"></p>
 		<p id="issues_umer936"></p>
 		<p>Total unit tests: </p>
-		
+
 		<h2>Brandon Pham</h2>
 		<img src="bpham.jpg">
 		<h3>Bio</h3>
 		<p style="width:750px">
-		I am a senior student studying Software Engineering and Network Security. 
+		I am a senior student studying Software Engineering and Network Security.
 		I am specialized in Software Development, versed in Python, Java, and C#.
 		I interned at AMD last Summer and Spring. I strive for a job in Network or Cyber security.
 		</p>
@@ -176,17 +180,17 @@
 		<p id="commits_bpham1"></p>
 		<p id="issues_bpham1"></p>
 		<p>Total unit tests: 0</p>
-		
+
 		<h1>The Github Repository</h1>
 		<a href="https://github.com/PhotoStorageSoftwareLab/NextcloudWebApp">Repo</a>
 		<p id="commits">Total Commits: </p>
 		<p id="issues">Total Issues: </p>
-		
+
 		<script>
 		getCommits()
 		getIssues()
 		</script>
-		
+
 		<h1>Data</h1>
 		<a href='https://www.alltopsights.com/'>All Top Sights</a>
 		<p style="width:750px">This site has a list of popular locations and their Latitude and Longitude filtered by city.
@@ -194,23 +198,23 @@
 		However, to get all locations, we need to programmatically shift through multiple pages
 		since each page is limited to a single city. We can use a list of cities from the next sources to achieve this.
 		This can be done using Python and Scrapy.</p>
-		
+
 		<a href="http://www.geonames.org/search.html?q=&country=US">Geonames</a>
 		<p style="width:750px">This site has a list of cities and their Latitude and Longitude filtered by country.
 		The HTML tables on this site can be easily extracted (they are simple HTML tables).
 		However, to get all cities, we need to programmatically shift through multiple pages
 		since each page is limited to 50 cities. This can be done using Python and Scrapy.</p>
-		
+
 		<a href="https://developers.google.com/public-data/docs/canonical/countries_csv">Countries CSV</a>
 		<p style="width:750px">This site has a list of countries and their Latitude and Longitude.
 		The HTML tables on this site can be easily extracted (they are simple HTML tables).
 		Since all information is on a single page, Excel can be used scrape all the data easily to a csv.
 		Data > Get Data > From Other Sources > From Web</p>
-		
+
 		<h1>Tools</h1>
 		<p>The primary tool used in this project is Nextcloud. Nextcloud will provide local storage to store photos on a machine in the user’s local network. These photos will be uploaded through a dedicated web application. This web application will be created with a combination of Javascript and React, built for a Node environment. Image processing will be handled through YOLO, a C++ image recognition system. YOLO comes with a neural network named darknet developed by the same person. Additionally, YOLO has default weights with classifications for over 9000 objects. The YOLO associated set of tools handles this part for us so we do not need to reinvent the wheel. Nextcloud’s web application toolkit also includes PHP (with PHPUnit for unit testing) and MySQL for the backend.
 		Because most of the front-end programming is built for the front-end, we intend to use web development tools that are included in the browser of choice. We may also utilize Selenium for comprehensive design tests.
-		We also are using tools for us to manage a project of this scope. We will be keeping our code on GitHub in a group so that we can have multiple repositories for different aspects of the project. Additionally, all non-code files, such as this report, are kept on a team Google Drive (semi-ironic). Lastly, we have created a Slack group with dedicated channels for things like the application development vs general communication. 
+		We also are using tools for us to manage a project of this scope. We will be keeping our code on GitHub in a group so that we can have multiple repositories for different aspects of the project. Additionally, all non-code files, such as this report, are kept on a team Google Drive (semi-ironic). Lastly, we have created a Slack group with dedicated channels for things like the application development vs general communication.
 		For Data Scraping, we created a scraping script in Python using a data scraping module called Scrapy.
 		</p>
 
