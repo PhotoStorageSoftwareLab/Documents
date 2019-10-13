@@ -5,3 +5,17 @@ img {
 p {
 	width: 750px;
 }
+
+body {
+     background-color: #CCFFFF;
+      font-size: 2em;
+}
+h1 {
+   border-style: dotted;
+   border-width: 5px;
+   border-left-width: 8px;
+   border-right-width: 8px;
+   border-color: pink;
+text-align: center;
+
+}
