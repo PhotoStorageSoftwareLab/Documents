@@ -5,74 +5,126 @@
 		<link rel="stylesheet" type="text/css" href="main.css">
 	</head>
 	<script>
+	var github_commits_ids = {
+		"adripedroza": 0,
+		"abhimand": 0,
+		"shash-pandey27": 0,
+		"mmachado33": 0,
+		"pranav12321": 0,
+		"umer936": 0,
+		"bpham1": 0
+	};
+	var github_issues_ids = {
+		"adripedroza": 0,
+		"abhimand": 0,
+		"shash-pandey27": 0,
+		"mmachado33": 0,
+		"pranav12321": 0,
+		"umer936": 0,
+		"bpham1": 0
+	};
+	var total_commits = 0
+	var total_issues = 0
 	function successCallBackCommits(result){
-		document.getElementById("commits").innerHTML = "Total Commits: " + result.total_count
-		var github_ids = {
-			"adripedroza": 0,
-			"abhimand": 0,
-			"shash-pandey27": 0,
-			"mmachado123": 0,
-			"pranav12321": 0,
-			"umer936": 0,
-			"bpham1": 0
-		};
+		total_commits += result.total_count
+		document.getElementById("commits").innerHTML = "Total Commits: " + total_commits
 
 		result.items.forEach(commit_func)
 
 		function commit_func(item) {
-			github_ids[item.author["login"]] += 1
+			if (item.author != null){
+				if (item.author["login"] == "mmachado123") {
+					github_commits_ids["mmachado33"] += 1
+				}
+				else if (item.author["login"] == "Bpham1") {
+					github_commits_ids["bpham1"] += 1
+				}
+				else {
+					github_commits_ids[item.author["login"]] += 1
+				}
+			} else if (item.commit != null && item.commit.author != null) {
+				if (item.commit.author["name"] == "mmachado123") {
+					github_commits_ids["mmachado33"] += 1
+				}
+				else if (item.commit.author["login"] == "Bpham1") {
+					github_commits_ids["bpham1"] += 1
+				}
+				else {
+					github_commits_ids[item.commit.author["name"]] += 1
+				}
+			}
 		}
 
-		for (var key in github_ids) {
-			document.getElementById("commits_" + key).innerHTML = "Total Commits: " + github_ids[key]
+		for (var key in github_commits_ids) {
+			document.getElementById("commits_" + key).innerHTML = "Total Commits: " + github_commits_ids[key]
 		}
 	}
 	function successCallBackIssues(result){
-		document.getElementById("issues").innerHTML = "Total Issues: " + result.total_count
-		var github_ids = {
-			"adripedroza": 0,
-			"abhimand": 0,
-			"shash-pandey27": 0,
-			"mmachado123": 0,
-			"pranav12321": 0,
-			"umer936": 0,
-			"bpham1": 0
-		};
+		total_issues += result.total_count
+		document.getElementById("issues").innerHTML = "Total Issues: " + total_issues
 
 		result.items.forEach(issue_func)
 
 		function issue_func(item) {
-			github_ids[item.user["login"]] += 1
+			if (item.user["login"] == "mmachado123") {
+				github_issues_ids["mmachado33"] += 1
+			}
+			else if (item.user["login"] == "Bpham1") {
+				github_issues_ids["bpham1"] += 1
+			}
+			else {
+				github_issues_ids[item.user["login"]] += 1
+			}
 		}
 
-		for (var key in github_ids) {
-			document.getElementById("issues_" + key).innerHTML = "Total Issues: " + github_ids[key]
+		for (var key in github_issues_ids) {
+			document.getElementById("issues_" + key).innerHTML = "Total Issues: " + github_issues_ids[key]
 		}
 	}
 	async function getIssues() {
-		const url = "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp"
+		var url = "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp"
 		const headers = {
 			"Accept" : "application/vnd.github.machine-man-preview"
 		}
-		const response = await fetch(url, {
+		var response = await fetch(url, {
 			"method" : "GET",
 			"headers" : headers
 		})
-		const result = response.json()
+		var result = response.json()
+
+		console.log(result)
+		result.then(successCallBackIssues)
+		
+		url = "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/Documents"
+		response = await fetch(url, {
+			"method" : "GET",
+			"headers" : headers
+		})
+		result = response.json()
 
 		console.log(result)
 		result.then(successCallBackIssues)
 	}
 	async function getCommits() {
-		const url = "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp author-date:2019-09-01..2020-12-30"
+		var url = "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp author-date:2019-09-01..2020-12-30"
 		const headers = {
 			"Accept" : "application/vnd.github.cloak-preview"
 		}
-		const response = await fetch(url, {
+		var response = await fetch(url, {
 			"method" : "GET",
 			"headers" : headers
 		})
-		const result = response.json()
+		var result = response.json()
+
+		console.log(result)
+		result.then(successCallBackCommits)
+		
+		url = "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/Documents author-date:2019-09-01..2020-12-30"
+		response = await fetch(url, {
+			"method" : "GET",
+			"headers" : headers
+		})
+		result = response.json()
 
 		console.log(result)
 		result.then(successCallBackCommits)
@@ -166,8 +218,8 @@
 		<h3>Responsibilities</h3>
 		<p> Front-end design and testing </p>
 		<h3>Github Stats</h3>
-		<p id="commits_mmachado123"></p>
-		<p id="issues_mmachado123"></p>
+		<p id="commits_mmachado33"></p>
+		<p id="issues_mmachado33"></p>
 		<p>Total unit tests: 0</p>
         <p><button class="button">Contact</button></p>
       </div>
@@ -291,7 +343,9 @@
 		<div>
 		<h2>The Github Repository</h2>
 	</div>
-		<a href="https://github.com/PhotoStorageSoftwareLab/NextcloudWebApp">Repo</a>
+		<a href="https://github.com/PhotoStorageSoftwareLab/NextcloudWebApp">Next Cloud Web App Repo</a>
+		<p></p>
+		<a href="https://github.com/PhotoStorageSoftwareLab/Documents">Documents Repo</a>
 		<p id="commits">Total Commits: </p>
 		<p id="issues">Total Issues: </p>
 		<h1>Data</h1>
