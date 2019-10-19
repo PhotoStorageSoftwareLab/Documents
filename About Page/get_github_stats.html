@@ -1,369 +1,428 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>About Page</title>
-		<link rel="stylesheet" type="text/css" href="main.css">
-		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-		<link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
-	</head>
-	<script>
-		var github_commits_ids = {
-			"adripedroza": 0,
-			"abhimand": 0,
-			"shash-pandey27": 0,
-			"mmachado33": 0,
-			"pranav12321": 0,
-			"umer936": 0,
-			"bpham1": 0
-		};
-		var github_issues_ids = {
-			"adripedroza": 0,
-			"abhimand": 0,
-			"shash-pandey27": 0,
-			"mmachado33": 0,
-			"pranav12321": 0,
-			"umer936": 0,
-			"bpham1": 0
-		};
-		var total_commits = 0
-		var total_issues = 0
-		function successCallBackCommits(result){
-			total_commits += result.total_count
-			document.getElementById("commits").innerHTML = "Total Commits: " + total_commits
+<title>Meet Team Crimson</title>
 
-			result.items.forEach(commit_func)
+<link
+  href="main.css"
+  rel="stylesheet"
+  type="text/css">
+</link>
 
-			function commit_func(item) {
-				if (item.author != null){
-					if (item.author["login"] == "mmachado123") {
-						github_commits_ids["mmachado33"] += 1
-					}
-					else if (item.author["login"] == "Bpham1") {
-						github_commits_ids["bpham1"] += 1
-					}
-					else {
-						github_commits_ids[item.author["login"]] += 1
-					}
-				} else if (item.commit != null && item.commit.author != null) {
-					if (item.commit.author["name"] == "mmachado123") {
-						github_commits_ids["mmachado33"] += 1
-					}
-					else if (item.commit.author["login"] == "Bpham1") {
-						github_commits_ids["bpham1"] += 1
-					}
-					else {
-						github_commits_ids[item.commit.author["name"]] += 1
-					}
-				}
-			}
+<link
+  href="https://fonts.googleapis.com/css?family=Raleway"
+  rel="stylesheet">
+</link>
 
-			for (var key in github_commits_ids) {
-				document.getElementById("commits_" + key).innerHTML = "Total Commits: " + github_commits_ids[key]
-			}
-		}
-		function successCallBackIssues(result){
-			total_issues += result.total_count
-			document.getElementById("issues").innerHTML = "Total Issues: " + total_issues
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto Slab"
+  rel="stylesheet">
+</link>
 
-			result.items.forEach(issue_func)
+<script>
+  var github_commits_ids = { "adripedroza": 0, "abhimand": 0, "shash-pandey27": 0, "mmachado33": 0,
+  "pranav12321": 0, "umer936": 0, "bpham1": 0 }; var github_issues_ids = { "adripedroza": 0,
+  "abhimand": 0, "shash-pandey27": 0, "mmachado33": 0, "pranav12321": 0, "umer936": 0, "bpham1": 0
+  }; var total_commits = 0 var total_issues = 0 function successCallBackCommits(result){
+  total_commits += result.total_count document.getElementById("commits").innerHTML = "Total Commits:
+  " + total_commits  result.items.forEach(commit_func)  function commit_func(item) { if (item.author
+  != null){ if (item.author["login"] == "mmachado123") { github_commits_ids["mmachado33"] += 1 }
+  else if (item.author["login"] == "Bpham1") { github_commits_ids["bpham1"] += 1 } else {
+  github_commits_ids[item.author["login"]] += 1 } } else if (item.commit != null &&
+  item.commit.author != null) { if (item.commit.author["name"] == "mmachado123") {
+  github_commits_ids["mmachado33"] += 1 } else if (item.commit.author["login"] == "Bpham1") {
+  github_commits_ids["bpham1"] += 1 } else { github_commits_ids[item.commit.author["name"]] += 1 } }
+  }  for (var key in github_commits_ids) { document.getElementById("commits_" + key).innerHTML =
+  "Total Commits: " + github_commits_ids[key] } } function successCallBackIssues(result){
+  total_issues += result.total_count document.getElementById("issues").innerHTML = "Total Issues: "
+  + total_issues  result.items.forEach(issue_func)  function issue_func(item) { if
+  (item.user["login"] == "mmachado123") { github_issues_ids["mmachado33"] += 1 } else if
+  (item.user["login"] == "Bpham1") { github_issues_ids["bpham1"] += 1 } else {
+  github_issues_ids[item.user["login"]] += 1 } }  for (var key in github_issues_ids) {
+  document.getElementById("issues_" + key).innerHTML = "Total Issues: " + github_issues_ids[key] } }
+  async function getIssues() { var url =
+  "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp" const
+  headers = { "Accept" : "application/vnd.github.machine-man-preview" } var response = await
+  fetch(url, { "method" : "GET", "headers" : headers }) var result = response.json()
+  console.log(result) result.then(successCallBackIssues)  url =
+  "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/Documents" response = await
+  fetch(url, { "method" : "GET", "headers" : headers }) result = response.json()
+  console.log(result) result.then(successCallBackIssues) } async function getCommits() { var url =
+  "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp
+  author-date:2019-09-01..2020-12-30" const headers = { "Accept" :
+  "application/vnd.github.cloak-preview" } var response = await fetch(url, { "method" : "GET",
+  "headers" : headers }) var result = response.json()  console.log(result)
+  result.then(successCallBackCommits)  url =
+  "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/Documents
+  author-date:2019-09-01..2020-12-30" response = await fetch(url, { "method" : "GET", "headers" :
+  headers }) result = response.json()  console.log(result) result.then(successCallBackCommits) }
+</script>
 
-			function issue_func(item) {
-				if (item.user["login"] == "mmachado123") {
-					github_issues_ids["mmachado33"] += 1
-				}
-				else if (item.user["login"] == "Bpham1") {
-					github_issues_ids["bpham1"] += 1
-				}
-				else {
-					github_issues_ids[item.user["login"]] += 1
-				}
-			}
+<h1>Description</h1>
 
-			for (var key in github_issues_ids) {
-				document.getElementById("issues_" + key).innerHTML = "Total Issues: " + github_issues_ids[key]
-			}
-		}
-		async function getIssues() {
-			var url = "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp"
-			const headers = {
-				"Accept" : "application/vnd.github.machine-man-preview"
-			}
-			var response = await fetch(url, {
-				"method" : "GET",
-				"headers" : headers
-			})
-			var result = response.json()
+<h2>The Problem</h2>
 
-			console.log(result)
-			result.then(successCallBackIssues)
+<hr></hr>
 
-			url = "https://api.github.com/search/issues?q=repo:PhotoStorageSoftwareLab/Documents"
-			response = await fetch(url, {
-				"method" : "GET",
-				"headers" : headers
-			})
-			result = response.json()
+<p>
+  Cloud storage has reached tipping points, specifically in security/privacy and processing/storage
+  equipment. There are ways to keep your data safe from cloud storage locations and companies, but
+  those solutions do not provide the level of features that the cloud storage solution offers. One
+  specific pain point in removing one's information from cloud storage is the loss of photo gallery
+  apps and tools.
+</p>
 
-			console.log(result)
-			result.then(successCallBackIssues)
-		}
-		async function getCommits() {
-			var url = "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/NextcloudWebApp author-date:2019-09-01..2020-12-30"
-			const headers = {
-				"Accept" : "application/vnd.github.cloak-preview"
-			}
-			var response = await fetch(url, {
-				"method" : "GET",
-				"headers" : headers
-			})
-			var result = response.json()
+<h2>Our Purpose</h2>
 
-			console.log(result)
-			result.then(successCallBackCommits)
+<p>
+  This website serves to provide a security as well as all the features you would expect in a photo
+  gallery application, such as excellent features like image tagging and classification, sharing
+  across users, and location tagging of each photo. All of these tags are then searchable, which
+  means the user can just search their gallery for "Colorado" or "bicycles" and get their images
+  associated. Additionally, the backend we use, Nextcloud, is HIPAA-certified and open source. Open
+  source is a huge win for privacy and security because it allows auditing by millions.
+</p>
 
-			url = "https://api.github.com/search/commits?q=repo:PhotoStorageSoftwareLab/Documents author-date:2019-09-01..2020-12-30"
-			response = await fetch(url, {
-				"method" : "GET",
-				"headers" : headers
-			})
-			result = response.json()
+<h2>Intended Users</h2>
 
-			console.log(result)
-			result.then(successCallBackCommits)
-		}
-	</script>
+<p>
+  This application is meant for those who own their own local storage and would like to remotely
+  upload, edit, and tag their photos from anywhere in the world. If you are concerned with the
+  security of your photos, this is the application for you.
+</p>
 
-	<body>
-		<h1>Description</h1>
-        <h2>The Problem</h2>
-				<hr>
-		<p>
-        	Cloud storage has reached tipping points, specifically in security/privacy and processing/storage equipment.
-			There are ways to keep your data safe from cloud storage locations and companies, but those solutions do not provide the level of features that the cloud storage solution offers.
-			One specific pain point in removing one's information from cloud storage is the loss of photo gallery apps and tools.
-		</p>
-		<h2>Our Purpose</h2>
-		<p>
-			This website serves to provide a security as well as all the features you would expect in a photo gallery application, such as excellent features like image tagging and classification, sharing across users, and location tagging of each photo.
-			All of these tags are then searchable, which means the user can just search their gallery for "Colorado" or "bicycles" and get their images associated.
-			Additionally, the backend we use, Nextcloud, is HIPAA-certified and open source. Open source is a huge win for privacy and security because it allows auditing by millions.
-		</p>
-		<h2>Intended Users</h2>
-		<p>
-			This application is meant for those who own their own local storage and would like to remotely upload, edit, and tag their photos from anywhere in the world.
-			If you are concerned with the security of your photos, this is the application for you.
-		</p>
+<h1>NextCloud App</h1>
 
-		<h1>NextCloud App</h1>
-		<p style="width:1500px">Please click on the following link to be forwarded to our NextCloud application.</p>
+<p style="width:1500px">
+  Please click on the following link to be forwarded to our NextCloud application.
+</p>
 
-		<a href="http://70.114.217.80:2351/nextcloud/">Crimson Photo Storage</a>
+<a href="http://70.114.217.80:2351/nextcloud/">Crimson Photo Storage</a>
 
-		<h1>Group: Crimson</h1>
+<h1>Group: Crimson</h1>
 
-		<h2>Group Members</h2>
+<h2>Group Members</h2>
 
-		<div class="row">
-  <div class="column">
-    <div class="card">
-      <img src="apedroza.jpg" alt="Adriana" >
-      <div class="container">
-        <h2>Adriana Pedroza</h2>
-        <p class="bio">I am a senior student at UT Austin, specializing in Software Engineering and Data Science.
-			I have industry experience with robotic process automation, natural language processing, and serverless solutions including AWS.
-			My most familiar languages are Java and Javascript, though I have experience with Python, C/C++/C#, and specialized languages like SQL.
-			I will be working at Atlassian starting in July 2020!</p>
-                <h3>Major</h3>
-		<p>Electrical and Computer Engineering</p>
-		<h3>Responsibilities</h3>
-		<p>Selenium Testing; Front-end design</p>
-		<h3>Github Stats</h3>
-		<p id="commits_adripedroza"></p>
-		<p id="issues_adripedroza"></p>
-		<p>Total unit tests: 0</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="column">
-    <div class="card">
-      <img src="bpham.jpg" alt="Brandon" >
-      <div class="container">
-        <h2>Brandon Pham</h2>
-		<p class="bio">
-		I am a senior at the University of Texas at Austin, specializing in Software Engineering.
-		I have specialized in Software Design and Network Security. Last Summer and Spring I interned at AMD on their debug team.
-		I strive to work in the field of cyber or network security.
-		</p>
-		<h3>Major</h3>
-		<p>Electrical and Computer Engineering</p>
-		<h3>Responsibilities</h3>
-		<p>Data Scraping</p>
-		<h3>Github Stats</h3>
-		<p id="commits_bpham1"></p>
-		<p id="issues_bpham1"></p>
-		<p>Total unit tests: 0</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <img src="matt.PNG" alt="Matthew" >
-      <div class="container">
-        <h2>Matthew Machado</h2>
-        <p class="bio">I am a senior doing a dual degree, studying Software Engineering and Japanese.
-			I interned at USAA last Summer and focused on testing in Java/Kotlin.
-			I'm most familiar with Java/Kotlin, but have experience in Python and C/C++ as well. </p>
-                <h3>Major</h3>
-		<p>Electrical and Computer Engineering</p>
-		<h3>Responsibilities</h3>
-		<p> Front-end design and testing </p>
-		<h3>Github Stats</h3>
-		<p id="commits_mmachado33"></p>
-		<p id="issues_mmachado33"></p>
-		<p>Total unit tests: 0</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-	<div class="row">
-  <div class="column">
-    <div class="card">
-      <img src="umer936.jpg" alt="Umer" >
-      <div class="container">
-        <h2>Umer Salman</h2>
-        <p class="bio"> I'm a senior undergrad who primarily works in the robotics and cybersecurity fields.
-					For robotics, I run <a href="https://texasaerialrobotics.com">Texas Aerial Robotics</a>,
-					 a 40 person research team
-					focused on the cutting edge of autonomous aerial vehicles. I also love cybersecurity, and have interned at
-					General Dynamics Mission Systems; Visa, Inc.; and National Geospacial-Intelligence Agency.
-					I always love meeting new people, so feel free to reach out.</p>
-        		<h3>Major</h3>
-		<p>Electrical and Computer Engineering<br>Minor: Business</p>
-		<h3>Responsibilities</h3>
-		<p>Project Lead. Nextcloud and YOLO stuff.</p>
-		<h3>Github Stats</h3>
-		<p id="commits_umer936"></p>
-		<p id="issues_umer936"></p>
-		<p>Total unit tests: 0</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <img src="abhi.jpg" alt="Abhishek" >
-      <div class="container">
-        <h2>Abishek Mandal</h2>
-        <p class="bio">I am an undergraduate senior at the University of Texas at Austin.
-					My interests are in Software Engineering and Product Management, with fortes in Java,
-					JavaScript, and C/C++. I have been a researcher at A&M International University and
-					UT, and have interned at Fujitsu.</p>
-
-        <h3>Major</h3>
-		<p>Electrical and Computer Engineering</p>
-		<h3>Responsibilities</h3>
-		<p>Organization, Documentation, and general assistance.</p>
-		<h3>Github Stats</h3>
-		<p id="commits_abhimand"></p>
-		<p id="issues_abhimand"></p>
-		<p>Total unit tests: 0</p>
-        <p><button class="button">Contact</button></p>
-
-
-      </div>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <img src="Pranav.png" alt="Pranav" >
-      <div class="container">
-        <h2>Pranav Rama</h2>
-        <p class="bio">I am a senior specializing in Data Science and Communication Networks.
-			I'm familiar with Java, Python, C, C++ and Rust.</p>
-                <h3>Major</h3>
-		<p>Electrical and Computer Engineering</p>
-		<h3>Responsibilities</h3>
-		<p>Data Scraping, Integration with YOLO</p>
-		<h3>Github Stats</h3>
-		<p id="commits_pranav12321"></p>
-		<p id="issues_pranav12321"></p>
-		<p>Total unit tests: 0</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="row">
   <div class="column">
     <div class="card">
-      <img src="shash-pandey27.jpg" alt="Shashwat" >
+      <img
+        alt="Adriana"
+        src="apedroza.jpg"/>
       <div class="container">
-        <h2>Shashwat Pandey</h2>
+        <h2>Adriana Pedroza</h2>
+
         <p class="bio">
-		I am a senior at the University of Texas at Austin, specializing in Software Engineering. I have experience in security, DevOps, and cloud computing.
-		I interned at AWS Security last summer and focused on automated system and threat modelling.
-		</p>
-                <h3>Major</h3>
-		<p>Electrical and Computer Engineering</p>
-		<h3>Responsibilities</h3>
-		<p>Data Scraping</p>
-		<h3>Github Stats</h3>
-		<p id="commits_shash-pandey27"></p>
-		<p id="issues_shash-pandey27"></p>
-		<p>Total unit tests: 0</p>
+          I am a senior student at UT Austin, specializing in Software Engineering and Data Science.
+          I have industry experience with robotic process automation, natural language processing,
+          and serverless solutions including AWS. My most familiar languages are Java and
+          Javascript, though I have experience with Python, C/C++/C#, and specialized languages like
+          SQL. I will be working at Atlassian starting in July 2020!
+        </p>
+
+        <h3>Major</h3>
+
+        <p>Electrical and Computer Engineering</p>
+
+        <h3>Responsibilities</h3>
+
+        <p>Selenium Testing; Front-end design</p>
+
+        <h3>Github Stats</h3>
+
+        <p id="commits_adripedroza"></p>
+
+        <p id="issues_adripedroza"></p>
+
+        <p>Total unit tests: 0</p>
+
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img
+        alt="Brandon"
+        src="bpham.jpg"/>
+      <div class="container">
+        <h2>Brandon Pham</h2>
+
+        <p class="bio">
+          I am a senior at the University of Texas at Austin, specializing in Software Engineering.
+          I have specialized in Software Design and Network Security. Last Summer and Spring I
+          interned at AMD on their debug team. I strive to work in the field of cyber or network
+          security.
+        </p>
+
+        <h3>Major</h3>
+
+        <p>Electrical and Computer Engineering</p>
+
+        <h3>Responsibilities</h3>
+
+        <p>Data Scraping</p>
+
+        <h3>Github Stats</h3>
+
+        <p id="commits_bpham1"></p>
+
+        <p id="issues_bpham1"></p>
+
+        <p>Total unit tests: 0</p>
+
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img
+        alt="Matthew"
+        src="matt.PNG"/>
+      <div class="container">
+        <h2>Matthew Machado</h2>
+
+        <p class="bio">
+          I am a senior doing a dual degree, studying Software Engineering and Japanese. I interned
+          at USAA last Summer and focused on testing in Java/Kotlin. I'm most familiar with
+          Java/Kotlin, but have experience in Python and C/C++ as well.
+        </p>
+
+        <h3>Major</h3>
+
+        <p>Electrical and Computer Engineering</p>
+
+        <h3>Responsibilities</h3>
+
+        <p>Front-end design and testing</p>
+
+        <h3>Github Stats</h3>
+
+        <p id="commits_mmachado33"></p>
+
+        <p id="issues_mmachado33"></p>
+
+        <p>Total unit tests: 0</p>
+
         <p><button class="button">Contact</button></p>
       </div>
     </div>
   </div>
 </div>
-<hr>
 
-		<script>
-		getCommits()
-		getIssues()
-		</script>
-		<div>
-		<h2>The Github Repository</h2>
-	</div>
-		<a href="https://github.com/PhotoStorageSoftwareLab/NextcloudWebApp">Next Cloud Web App Repo</a>
-		<p></p>
-		<a href="https://github.com/PhotoStorageSoftwareLab/Documents">Documents Repo</a>
-		<p id="commits">Total Commits: </p>
-		<p id="issues">Total Issues: </p>
-		<h1>Data</h1>
-		<a href='https://www.alltopsights.com/'>All Top Sights</a>
-		<p style="width:750px">This site has a list of popular locations and their Latitude and Longitude filtered by city.
-		The HTML tables on this site can be easily extracted (they are simple HTML tables).
-		However, to get all locations, we need to programmatically shift through multiple pages
-		since each page is limited to a single city. We can use a list of cities from the next sources to achieve this.
-		This can be done using Python and Scrapy.</p>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img
+        alt="Shashwat"
+        src="shash-pandey27.jpg"/>
+      <div class="container">
+        <h2>Shashwat Pandey</h2>
 
-		<a href="http://www.geonames.org/search.html?q=&country=US">Geonames</a>
-		<p style="width:750px">This site has a list of cities and their Latitude and Longitude filtered by country.
-		The HTML tables on this site can be easily extracted (they are simple HTML tables).
-		However, to get all cities, we need to programmatically shift through multiple pages
-		since each page is limited to 50 cities. This can be done using Python and Scrapy.</p>
+        <p class="bio">
+          I am a senior at the University of Texas at Austin, specializing in Software Engineering.
+          I have experience in security, DevOps, and cloud computing. I interned at AWS Security
+          last summer and focused on automated system and threat modelling.
+        </p>
 
-		<a href="https://developers.google.com/public-data/docs/canonical/countries_csv">Countries CSV</a>
-		<p style="width:750px">This site has a list of countries and their Latitude and Longitude.
-		The HTML tables on this site can be easily extracted (they are simple HTML tables).
-		Since all information is on a single page, Excel can be used scrape all the data easily to a csv.
-		Data > Get Data > From Other Sources > From Web</p>
+        <h3>Major</h3>
 
-		<h1>Tools</h1>
-		<p style="width:750px">The primary tool used in this project is Nextcloud. Nextcloud will provide local storage to store photos on a machine in the user’s local network. These photos will be uploaded through a dedicated web application. This web application will be created with a combination of Javascript and React, built for a Node environment. Image processing will be handled through YOLO, a C++ image recognition system. YOLO comes with a neural network named darknet developed by the same person. Additionally, YOLO has default weights with classifications for over 9000 objects. The YOLO associated set of tools handles this part for us so we do not need to reinvent the wheel. Nextcloud’s web application toolkit also includes PHP (with PHPUnit for unit testing) and MySQL for the backend.
-		Because most of the front-end programming is built for the front-end, we intend to use web development tools that are included in the browser of choice. We may also utilize Selenium for comprehensive design tests.
-		We also are using tools for us to manage a project of this scope. We will be keeping our code on GitHub in a group so that we can have multiple repositories for different aspects of the project. Additionally, all non-code files, such as this report, are kept on a team Google Drive (semi-ironic). Lastly, we have created a Slack group with dedicated channels for things like the application development vs general communication.
-		For Data Scraping, we created a scraping script in Python using a data scraping module called Scrapy.
-		</p>
+        <p>Electrical and Computer Engineering</p>
 
-	</body>
-</html>
+        <h3>Responsibilities</h3>
+
+        <p>Data Scraping</p>
+
+        <h3>Github Stats</h3>
+
+        <p id="commits_shash-pandey27"></p>
+
+        <p id="issues_shash-pandey27"></p>
+
+        <p>Total unit tests: 0</p>
+
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img
+        alt="Abhishek"
+        src="abhi.jpg"/>
+      <div class="container">
+        <h2>Abishek Mandal</h2>
+
+        <p class="bio">
+          I am an undergraduate senior at the University of Texas at Austin. My interests are in
+          Software Engineering and Product Management, with fortes in Java, JavaScript, and C/C++. I
+          have been a researcher at A&M International University and UT, and have interned at
+          Fujitsu.
+        </p>
+
+        <h3>Major</h3>
+
+        <p>Electrical and Computer Engineering</p>
+
+        <h3>Responsibilities</h3>
+
+        <p>Organization, Documentation, and general assistance.</p>
+
+        <h3>Github Stats</h3>
+
+        <p id="commits_abhimand"></p>
+
+        <p id="issues_abhimand"></p>
+
+        <p>Total unit tests: 0</p>
+
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img
+        alt="Pranav"
+        src="Pranav.png"/>
+      <div class="container">
+        <h2>Pranav Rama</h2>
+
+        <p class="bio">
+          I am a senior specializing in Data Science and Communication Networks. I'm familiar with
+          Java, Python, C, C++ and Rust.
+        </p>
+
+        <h3>Major</h3>
+
+        <p>Electrical and Computer Engineering</p>
+
+        <h3>Responsibilities</h3>
+
+        <p>Data Scraping, Integration with YOLO</p>
+
+        <h3>Github Stats</h3>
+
+        <p id="commits_pranav12321"></p>
+
+        <p id="issues_pranav12321"></p>
+
+        <p>Total unit tests: 0</p>
+
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img
+        alt="Umer"
+        src="umer936.jpg"/>
+      <div class="container">
+        <h2>Umer Salman</h2>
+
+        <p
+          class="bio"
+          style="display:inline">
+          I'm a senior undergrad who primarily works in the robotics and cybersecurity fields. For
+          robotics, I run
+          <a href="https://texasaerialrobotics.com">Texas Aerial Robotics</a>
+          , a 40 person research team focused on the cutting edge of autonomous aerial vehicles. I
+          also love cybersecurity, and have interned at General Dynamics Mission Systems; Visa,
+          Inc.; and National Geospacial-Intelligence Agency. I always love meeting new people, so
+          feel free to reach out.
+        </p>
+
+        <h3>Major</h3>
+
+        <p>Electrical and Computer Engineering<br/>Minor: Business</p>
+
+        <h3>Responsibilities</h3>
+
+        <p>Project Lead. Nextcloud and YOLO stuff.</p>
+
+        <h3>Github Stats</h3>
+
+        <p id="commits_umer936"></p>
+
+        <p id="issues_umer936"></p>
+
+        <p>Total unit tests: 0</p>
+
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr></hr>
+
+<script>getCommits() getIssues()</script>
+
+<div><h2>The Github Repository</h2></div>
+
+<a href="https://github.com/PhotoStorageSoftwareLab/NextcloudWebApp">Next Cloud Web App Repo</a>
+
+<p></p>
+
+<a href="https://github.com/PhotoStorageSoftwareLab/Documents">Documents Repo</a>
+
+<p id="commits">Total Commits:</p>
+
+<p id="issues">Total Issues:</p>
+
+<h1>Data</h1>
+
+<a href="https://www.alltopsights.com/">All Top Sights</a>
+
+<p style="width:750px">
+  This site has a list of popular locations and their Latitude and Longitude filtered by city. The
+  HTML tables on this site can be easily extracted (they are simple HTML tables). However, to get
+  all locations, we need to programmatically shift through multiple pages since each page is limited
+  to a single city. We can use a list of cities from the next sources to achieve this. This can be
+  done using Python and Scrapy.
+</p>
+
+<a href="http://www.geonames.org/search.html?q=&country=US">Geonames</a>
+
+<p style="width:750px">
+  This site has a list of cities and their Latitude and Longitude filtered by country. The HTML
+  tables on this site can be easily extracted (they are simple HTML tables). However, to get all
+  cities, we need to programmatically shift through multiple pages since each page is limited to 50
+  cities. This can be done using Python and Scrapy.
+</p>
+
+<a href="https://developers.google.com/public-data/docs/canonical/countries_csv">Countries CSV</a>
+
+<p style="width:750px">
+  This site has a list of countries and their Latitude and Longitude. The HTML tables on this site
+  can be easily extracted (they are simple HTML tables). Since all information is on a single page,
+  Excel can be used scrape all the data easily to a csv. Data > Get Data > From Other Sources > From
+  Web
+</p>
+
+<h1>Tools</h1>
+
+<p style="width:750px">
+  The primary tool used in this project is Nextcloud. Nextcloud will provide local storage to store
+  photos on a machine in the user’s local network. These photos will be uploaded through a dedicated
+  web application. This web application will be created with a combination of Javascript and React,
+  built for a Node environment. Image processing will be handled through YOLO, a C++ image
+  recognition system. YOLO comes with a neural network named darknet developed by the same person.
+  Additionally, YOLO has default weights with classifications for over 9000 objects. The YOLO
+  associated set of tools handles this part for us so we do not need to reinvent the wheel.
+  Nextcloud’s web application toolkit also includes PHP (with PHPUnit for unit testing) and MySQL
+  for the backend. Because most of the front-end programming is built for the front-end, we intend
+  to use web development tools that are included in the browser of choice. We may also utilize
+  Selenium for comprehensive design tests. We also are using tools for us to manage a project of
+  this scope. We will be keeping our code on GitHub in a group so that we can have multiple
+  repositories for different aspects of the project. Additionally, all non-code files, such as this
+  report, are kept on a team Google Drive (semi-ironic). Lastly, we have created a Slack group with
+  dedicated channels for things like the application development vs general communication. For Data
+  Scraping, we created a scraping script in Python using a data scraping module called Scrapy.
+</p>
