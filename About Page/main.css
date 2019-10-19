@@ -1,23 +1,31 @@
 img {
-	width: 40%;
+	width: 100%;
+	align-items: center;
+	padding-top: 25px;
+	padding-bottom: 10px;
+	padding-right: 25px;
+	padding-left: 25px;
 }
 
 p {
 	width: 500px;
 }
-
 body {
-     background-color: #CCFFFF;
-      font-size: 2em;
+		font-family: 'Raleway';
+		font-size: 15px;
+    background-color: #CCFFFF;
 }
 h1 {
-   border-style: dotted;
-   border-width: 5px;
-   border-left-width: 8px;
-   border-right-width: 8px;
-   border-color: pink;
-text-align: left;
+	 text-align: left;
+	 font-family: 'Roboto Slab';
+	 font-size: 40px;
+}
 
+h2 {
+	 text-align: left;
+	 font-family: 'Roboto Slab';
+	 font-size: 22px;
+	 font-style: italic;
 }
 
 html {
@@ -30,7 +38,7 @@ html {
 
 .column {
   float: left;
-  width: 33.3%;
+  width: 33%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
@@ -47,13 +55,29 @@ html {
 }
 
 .container {
-  padding: 0 16px;
+	height: auto;
+  padding: 0px 16px;
+	position: relative;
 }
 
+.bio {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	width: inherit;
+}
 .container::after, .row::after {
   content: "";
   clear: both;
   display: table;
+}
+
+#bastard {
+  white-space: nowrap;
+	padding: 0px 16px;
+	position: relative;
 }
 
 .title {
@@ -69,7 +93,7 @@ html {
   background-color: #000;
   text-align: center;
   cursor: pointer;
-  width: 100%;
+  width: 72%;
 }
 
 .button:hover {
