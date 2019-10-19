@@ -1,6 +1,7 @@
 img {
 	width: 100%;
 	align-items: center;
+	background-color: #d1f7f9;
 	padding-top: 25px;
 	padding-bottom: 10px;
 	padding-right: 25px;
@@ -11,9 +12,9 @@ p {
 	width: 500px;
 }
 body {
+		background-color: #f8f7f5;
 		font-family: 'Raleway';
 		font-size: 15px;
-    background-color: #CCFFFF;
 }
 h1 {
 	 text-align: left;
@@ -36,11 +37,27 @@ html {
   box-sizing: inherit;
 }
 
-.column {
+.columntop {
+  float: left;
+  width: 25%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.columnbottom {
   float: left;
   width: 33%;
   margin-bottom: 16px;
   padding: 0 8px;
+}
+.window {
+	text-decoration: white;
+  float: right;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+	background-color: #d1f7f9;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	background-color: #d1f7f9;
 }
 
 @media screen and (max-width: 650px) {
@@ -52,9 +69,11 @@ html {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	background-color: #d1f7f9;
 }
 
 .container {
+	background-color: #d1f7f9;
 	height: auto;
   padding: 0px 16px;
 	position: relative;
@@ -68,16 +87,11 @@ html {
   align-items: center;
 	width: inherit;
 }
+
 .container::after, .row::after {
   content: "";
   clear: both;
   display: table;
-}
-
-#bastard {
-  white-space: nowrap;
-	padding: 0px 16px;
-	position: relative;
 }
 
 .title {
@@ -93,7 +107,6 @@ html {
   background-color: #000;
   text-align: center;
   cursor: pointer;
-  width: 72%;
 }
 
 .button:hover {
