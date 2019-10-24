@@ -1,7 +1,14 @@
 import scrapy
 import csv
+import os
+import re
 
 class GeoNameSpider(scrapy.Spider):
+    try:
+        os.remove('coords.csv')
+    except:
+        pass
+
     name = 'geoname'
     allowed_domains = ['geonames.org']
     start_urls = [
@@ -14,21 +21,47 @@ class GeoNameSpider(scrapy.Spider):
 
     def parse(self, response):
         rows = response.css('table.restable')[1].css('tr')[2:]
-        with open('coords.csv', 'w+', newline='') as csvfile:
+        with open('coords.csv', 'a+', encoding='utf-8', newline='') as csvfile:
             csv_writer = csv.writer(csvfile)
             for row in rows:
                 columns = row.css('td')
                 latnlong = row.css('td::text')
                 if len(columns) == 6 and len(latnlong) == 8:
                     country_list = []
+
                     print("Name: " + str(columns[1].css('a::text')[0].get()))
                     country_list.append(str(columns[1].css('a::text')[0].get()))
+
+                    print("State: " + str(latnlong[2].get())[2:])
+                    country_list.append(str(latnlong[2].get())[2:])
+
                     print("Country: " + str(columns[2].css('a::text')[0].get()))
                     country_list.append(str(columns[2].css('a::text')[0].get()))
+
                     print("Lat: " + str(latnlong[6].get()))
-                    country_list.append(str(latnlong[6].get()))
+                    lat = str(latnlong[6].get())
+                    m = re.match("(.+) (.+)° (.+)' (.+)''", lat)
+                    dir = m.group(1)
+                    deg = m.group(2)
+                    min = m.group(3)
+                    sec = m.group(4)
+                    country_list.append(dir)
+                    country_list.append(deg)
+                    country_list.append(min)
+                    country_list.append(sec)
+
                     print("Long: " + str(latnlong[7].get()))
-                    country_list.append(str(latnlong[7].get()))
+                    long = str(latnlong[7].get())
+                    m = re.match("(.+) (.+)° (.+)' (.+)''", long)
+                    dir = m.group(1)
+                    deg = m.group(2)
+                    min = m.group(3)
+                    sec = m.group(4)
+                    country_list.append(dir)
+                    country_list.append(deg)
+                    country_list.append(min)
+                    country_list.append(sec)
+
                     csv_writer.writerow(country_list)
                     country_list = []
 
