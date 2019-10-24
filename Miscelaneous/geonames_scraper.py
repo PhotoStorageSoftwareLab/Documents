@@ -21,24 +21,24 @@ class GeoNameSpider(scrapy.Spider):
 
     def parse(self, response):
         rows = response.css('table.restable')[1].css('tr')[2:]
-        with open('coords.csv', 'a+', encoding='utf-8', newline='') as csvfile:
-            csv_writer = csv.writer(csvfile)
+        with open('coords.csv', 'a+', encoding='utf16', newline='') as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter='\t')
             for row in rows:
                 columns = row.css('td')
                 latnlong = row.css('td::text')
                 if len(columns) == 6 and len(latnlong) == 8:
                     country_list = []
 
-                    print("Name: " + str(columns[1].css('a::text')[0].get()))
+                    #print("Name: " + str(columns[1].css('a::text')[0].get()))
                     country_list.append(str(columns[1].css('a::text')[0].get()))
 
-                    print("State: " + str(latnlong[2].get())[2:])
+                    #print("State: " + str(latnlong[2].get())[2:])
                     country_list.append(str(latnlong[2].get())[2:])
 
-                    print("Country: " + str(columns[2].css('a::text')[0].get()))
+                    #print("Country: " + str(columns[2].css('a::text')[0].get()))
                     country_list.append(str(columns[2].css('a::text')[0].get()))
 
-                    print("Lat: " + str(latnlong[6].get()))
+                    #print("Lat: " + str(latnlong[6].get()))
                     lat = str(latnlong[6].get())
                     m = re.match("(.+) (.+)° (.+)' (.+)''", lat)
                     dir = m.group(1)
@@ -50,7 +50,7 @@ class GeoNameSpider(scrapy.Spider):
                     country_list.append(min)
                     country_list.append(sec)
 
-                    print("Long: " + str(latnlong[7].get()))
+                    #print("Long: " + str(latnlong[7].get()))
                     long = str(latnlong[7].get())
                     m = re.match("(.+) (.+)° (.+)' (.+)''", long)
                     dir = m.group(1)
